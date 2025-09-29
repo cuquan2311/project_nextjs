@@ -26,6 +26,7 @@ import {
 } from "@mui/icons-material";
 import { useAuthStore } from "@/store/AuthStore";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/language/LanguageButton";
 
 export default function HeaderUser() {
   const { isAuthenticated, userAcccout, logout } = useAuthStore();
@@ -134,7 +135,7 @@ export default function HeaderUser() {
               <ListItemButton
                 key={item.text}
                 component={Link}
-                href={item.href} // luôn có string, không undefined
+                href={item.href} 
                 sx={{
                   borderRadius: 2,
                   mb: 1,
