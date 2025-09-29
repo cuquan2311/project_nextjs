@@ -46,7 +46,7 @@ export default function DiscussionDetail({ topicId }: Props) {
       setComments((prev) =>
         prev.map((c) =>
           c.id === reply.id
-            ? {
+            ? { 
                 ...c,
                 replies: [
                   ...(c.replies || []),

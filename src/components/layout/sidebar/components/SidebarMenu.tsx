@@ -14,6 +14,7 @@ import {
   CardTravel,
   ContactMail,
   Laptop,
+  Message,
 } from "@mui/icons-material";
 import LanguageSwitcher from "@/components/language/LanguageButton";
 import { SimpleThemeToggle } from "@/components/theme/ThemeToggle";
@@ -41,7 +42,7 @@ export default function SidebarMenu({ open }: { open: boolean }) {
       ],
     },
     { text: "Mail", icon: <ContactMail />, href: "/admin/mail" },
-    { text: "Thảo luận", icon: <ContactMail />, href: "/admin/discuss" },
+    { text: "Thảo luận", icon: <Message />, href: "/admin/discuss" },
   ];
 
   if (open) {
@@ -60,7 +61,6 @@ export default function SidebarMenu({ open }: { open: boolean }) {
           pathname={pathname}
         />
 
-        {/* Setting section riêng */}
         <Box sx={{ mt: 3, px: 1, display: "flex", flexDirection: "column", gap: 1 }}>
           <SimpleThemeToggle />
           <LanguageSwitcher />
@@ -89,7 +89,6 @@ export default function SidebarMenu({ open }: { open: boolean }) {
           />
         ))}
 
-        {/* Setting khi collapsed → có thể hiển thị icon nhỏ */}
         <Box sx={{ mt: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
           <SimpleThemeToggle />
           <LanguageSwitcher />
