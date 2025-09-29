@@ -1,0 +1,31 @@
+.header {
+  z-index: 1300;
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-weight: bold;
+
+    &-accent {
+      color: #888;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  &__button {
+    text-transform: none;
+  }
+
+  &__login-button {
+    width: 120px;
+    text-transform: none;
+  }
+}

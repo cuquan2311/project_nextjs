@@ -1,0 +1,176 @@
+{
+  "header": {
+    "admin": "Bắt đầu",
+    "home": "Trang chủ",
+    "features": "Tính năng",
+    "login": "Đăng nhập"
+  },
+  "sidebar": {
+    "title": "Quản lý",
+    "dashboard": "Bảng điều khiển",
+    "products": "Sản phẩm",
+    "users": "Người dùng"
+  },
+  "hero": {
+    "title": "Nền tảng Quản lý Dữ liệu",
+    "desc": "An toàn, nhanh chóng, dễ dàng mở rộng trong kỷ nguyên AI.",
+    "button": "Bắt đầu ngay"
+  },
+  "dashboard": {
+    "title": "Bảng điều khiển",
+    "users": "Người dùng",
+    "products": "Sản phẩm",
+    "visits": "Lượt truy cập",
+    "overview": "Tổng quan",
+    "sales": "Doanh số",
+    "firtname": "Tên",
+    "lastname": "Họ",
+    "email": "Email",
+    "price": "Giá",
+    "stock": "Tồn kho",
+    "brand": "Thương hiệu"
+  },
+  "productAdmin": {
+    "addProduct": "Thêm sản phẩm",
+    "title": "QUẢN LÝ SẢN PHẨM",
+    "ID": "ID",
+    "image": "Ảnh",
+    "name": "Tên sản phẩm",
+    "price": "Gía",
+    "brand": "Thương hiệu",
+    "stock": "Tồn kho",
+    "discount": "Giảm giá",
+    "desc": "Mô tả",
+    "action": "Hành động",
+    "search": "Tìm kiếm sản phẩm..."
+  },
+  "actions": {
+    "edit": "Sửa",
+    "delete": "Xóa",
+    "detail": "Chi tiết"
+  },
+  "productForm": {
+    "titleAdd": "Thêm sản phẩm mới",
+    "titleEdit": "Chỉnh sửa sản phẩm",
+    "fields": {
+      "name": "Tên sản phẩm",
+      "description": "Mô tả",
+      "price": "Giá",
+      "discount": "Giảm giá (%)",
+      "stock": "Tồn kho",
+      "brand": "Thương hiệu",
+      "category": "Danh mục",
+      "thumbnail": "Ảnh (URL)"
+    },
+    "actions": {
+      "add": "Thêm sản phẩm",
+      "save": "Lưu thay đổi",
+      "cancel": "Hủy"
+    }
+  },
+  "userTable": {
+    "addUser": "Thêm người dùng",
+    "title": "QUẢN LÝ NGƯỜI DÙNG",
+    "columns": {
+      "id": "ID",
+      "avatar": "Ảnh",
+      "lastName": "Họ",
+      "firstName": "Tên",
+      "age": "Tuổi",
+      "gender": "Giới tính",
+      "email": "Email",
+      "phone": "SĐT",
+      "country": "Quốc gia",
+      "actions": "Hành động"
+    },
+    "actions": {
+      "add": "Thêm người dùng",
+      "save": "Lưu thay đổi",
+      "cancel": "Hủy"
+    }
+  },
+  "featuresPage": {
+    "title": "Giới thiệu tính năng",
+    "subtitle": "Hệ thống quản lý dữ liệu toàn diện với đầy đủ công cụ cho doanh nghiệp",
+    "features": {
+      "crud": {
+        "title": "CRUD dữ liệu",
+        "description": "Thêm, sửa, xóa, tìm kiếm dữ liệu trực quan và dễ sử dụng."
+      },
+      "userRole": {
+        "title": "Quản lý người dùng & phân quyền",
+        "description": "Phân quyền theo vai trò: Admin, Staff, User để đảm bảo an toàn."
+      },
+      "report": {
+        "title": "Báo cáo & thống kê",
+        "description": "Hiển thị dữ liệu qua biểu đồ, bảng và dashboard hiện đại."
+      },
+      "sync": {
+        "title": "Đồng bộ & tích hợp",
+        "description": "Hỗ trợ tích hợp API, đồng bộ dữ liệu đa nền tảng."
+      },
+      "security": {
+        "title": "Bảo mật nâng cao",
+        "description": "Xác thực người dùng, bảo vệ dữ liệu và lưu lịch sử thay đổi."
+      }
+    },
+    "highlightTitle": "🚀 Vì sao chọn hệ thống này?",
+    "highlightDesc": "Không chỉ đơn thuần là CRUD, hệ thống còn hỗ trợ báo cáo, phân quyền, bảo mật, và đồng bộ dữ liệu đa nền tảng.",
+    "cta": "Dùng thử ngay"
+  },
+  "confirmModal": {
+    "title": "Xác nhận hành động",
+    "message": "Bạn có chắc chắn muốn thực hiện hành động này không?",
+    "success": "Thành công",
+    "actions": {
+      "confirm": "Xác nhận",
+      "cancel": "Hủy"
+    }
+  },
+  "cli": {
+    "title": "UserManager Security",
+    "subtitle1": "Giải pháp quản lý và bảo mật dữ liệu toàn diện.",
+    "subtitle2": "Tích hợp công nghệ và phân tích tự động nhằm phát hiện, đánh giá và khắc phục lỗ hổng trong hệ thống.",
+    "point1": "Quét toàn bộ file hệ thống",
+    "point2": "Kiểm tra firewall và network port",
+    "point3": "Phân tích quyền user",
+    "point4": "Báo cáo chi tiết về mức độ rủi ro"
+  },
+  "features": {
+    "feature1": {
+      "title": "Lưu trữ an toàn",
+      "desc": "Mã hóa AES-256, tuân thủ GDPR, SOC2."
+    },
+    "feature2": {
+      "title": "Phát hiện mối đe dọa",
+      "desc": "AI giám sát và ngăn chặn xâm nhập."
+    },
+    "feature3": {
+      "title": "Đồng bộ dữ liệu",
+      "desc": "Cloud + On-premise liền mạch."
+    },
+    "feature4": {
+      "title": "Phân quyền chi tiết",
+      "desc": "RBAC & ABAC cho hàng triệu người dùng."
+    },
+    "feature5": {
+      "title": "Khả năng mở rộng",
+      "desc": "Hỗ trợ hàng triệu giao dịch/giây."
+    },
+    "feature6": {
+      "title": "Tích hợp nhanh",
+      "desc": "30+ SDK, chỉ mất 5 phút setup."
+    },
+    "sectionTitle": "Tính năng nổi bật"
+  },
+  "discussion": {
+    "title": "Thảo luận",
+    "info": "Bảng thông tin",
+    "placeholder": "Từ khóa...",
+    "add": "Thêm mới",
+    "comments": "Bình luận",
+    "reply": "Trả lời thảo luận này",
+    "replied": "Trả lời",
+    "replying_to": "Đang trả lời"
+  }
+}

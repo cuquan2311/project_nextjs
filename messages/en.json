@@ -1,0 +1,176 @@
+{
+  "header": {
+    "admin": "Start Admin",
+    "home": "Home",
+    "features": "Features",
+    "login": "Login"
+  },
+  "sidebar": {
+    "title": "Management",
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "users": "Users"
+  },
+  "hero": {
+    "title": "Data Management Platform",
+    "desc": "Safe, fast, and easily scalable in the AI era.",
+    "button": "Get Started"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "users": "Users",
+    "products": "Products",
+    "visits": "Visits",
+    "overview": "Overview",
+    "sales": "Sales",
+    "firtname": "First Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "price": "Price",
+    "stock": "Stock",
+    "brand": "Brand"
+  },
+  "productAdmin": {
+    "title": "Product Management",
+    "addProduct": "Add New Product",
+    "ID": "ID",
+    "image": "Image",
+    "name": "Product Name",
+    "price": "Price",
+    "brand": "Brand",
+    "stock": "Stock",
+    "discount": "Discount",
+    "desc": "Description",
+    "action": "Action",
+    "search": "Search products..."
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "detail": "Detail"
+  },
+  "productForm": {
+    "titleAdd": "Add New Product",
+    "titleEdit": "Edit Product",
+    "fields": {
+      "name": "Product Name",
+      "description": "Description",
+      "price": "Price",
+      "discount": "Discount (%)",
+      "stock": "Stock",
+      "brand": "Brand",
+      "category": "Category",
+      "thumbnail": "Image (URL)"
+    },
+    "actions": {
+      "add": "Add Product",
+      "save": "Save Changes",
+      "cancel": "Cancel"
+    }
+  },
+  "userTable": {
+    "addUser": "Add User",
+    "title": "USER MANAGEMENT",
+    "columns": {
+      "id": "ID",
+      "avatar": "Avatar",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "age": "Age",
+      "gender": "Gender",
+      "email": "Email",
+      "phone": "Phone",
+      "country": "Country",
+      "actions": "Actions"
+    },
+    "actions": {
+      "add": "Add User",
+      "save": "Save Changes",
+      "cancel": "Cancel"
+    }
+  },
+  "featuresPage": {
+    "title": "Features Overview",
+    "subtitle": "A complete data management system with all the tools your business needs",
+    "features": {
+      "crud": {
+        "title": "Data CRUD",
+        "description": "Easily create, read, update, and delete data with an intuitive interface."
+      },
+      "userRole": {
+        "title": "User Management & Roles",
+        "description": "Role-based access control: Admin, Staff, User for security and flexibility."
+      },
+      "report": {
+        "title": "Reports & Analytics",
+        "description": "Visualize data through charts, tables, and modern dashboards."
+      },
+      "sync": {
+        "title": "Sync & Integration",
+        "description": "Support API integration and multi-platform data synchronization."
+      },
+      "security": {
+        "title": "Advanced Security",
+        "description": "User authentication, data protection, and change history tracking."
+      }
+    },
+    "highlightTitle": "🚀 Why choose this system?",
+    "highlightDesc": "Beyond CRUD, the system also provides reporting, role-based access, security, and multi-platform synchronization.",
+    "cta": "Try it now"
+  },
+  "confirmModal": {
+    "title": "Confirm Action",
+    "message": "Are you sure you want to perform this action?",
+    "success": "Success",
+    "actions": {
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    }
+  },
+  "cli": {
+    "title": "UserManager Security",
+    "subtitle1": "Comprehensive data management and security solution.",
+    "subtitle2": "Integrates technology and automated analysis to detect, assess, and fix system vulnerabilities.",
+    "point1": "Scan all system files",
+    "point2": "Check firewall and network ports",
+    "point3": "Analyze user permissions",
+    "point4": "Detailed risk level reports"
+  },
+  "features": {
+    "feature1": {
+      "title": "Secure Storage",
+      "desc": "AES-256 encryption, GDPR and SOC2 compliant."
+    },
+    "feature2": {
+      "title": "Threat Detection",
+      "desc": "AI monitors and prevents intrusions."
+    },
+    "feature3": {
+      "title": "Data Synchronization",
+      "desc": "Seamless Cloud + On-premise integration."
+    },
+    "feature4": {
+      "title": "Detailed Permissions",
+      "desc": "RBAC & ABAC for millions of users."
+    },
+    "feature5": {
+      "title": "Scalability",
+      "desc": "Supports millions of transactions per second."
+    },
+    "feature6": {
+      "title": "Quick Integration",
+      "desc": "30+ SDKs, setup in 5 minutes."
+    },
+    "sectionTitle": "Outstanding Features"
+  },
+  "discussion": {
+    "title": "Discussion",
+    "info": "Information board",
+    "placeholder": "Keyword...",
+    "add": "Add new",
+    "comments": "Comments",
+    "reply": "Reply to this discussion",
+    "replied": "Reply",
+    "replying_to": "Replying to"
+  }
+}
