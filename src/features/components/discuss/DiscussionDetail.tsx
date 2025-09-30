@@ -1,5 +1,5 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import DiscussionHeader from "./discussionDetail/DiscussionHeader";
 import DiscussionBody from "./discussionDetail/DiscussionBody";
 import DiscussionImages from "./discussionDetail/DiscussionImages";
@@ -87,7 +87,16 @@ export default function DiscussionDetail({ topicId }: Props) {
   };
 
   return (
-    <Box display="flex" flexDirection="column" height="100%" >
+    <Box 
+    display="flex" 
+    flexDirection="column" 
+    height="100%" 
+    sx = {{
+      width: "100%",
+      maxWidth : {xs : "100%" , sm : "95%" , md : "85%" , lg : "100%"},
+      margin: "0 auto",
+    }}
+    >
       {/* Header */}
       <Box sx={{ borderBottom: "2px solid #dadadaee", p: 2 }}>
         <DiscussionHeader topicId={start} />

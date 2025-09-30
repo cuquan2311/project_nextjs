@@ -27,6 +27,7 @@ export default function CommentItem({
         flexDirection: "column",
         bgcolor: isReply ? "#f0fdf4" : "white",
         overflow: "hidden",
+        paddingRight: "7px"
       }}
     >
       {/* 🔹 Thanh highlight nằm trên cùng nếu là reply */}

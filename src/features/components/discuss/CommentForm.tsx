@@ -19,7 +19,7 @@ export default function CommentForm({
   onCancelReply,
 }: Props) {
   const [newComment, setNewComment] = useState("");
-  const t = useTranslations("discussion")
+  const t = useTranslations("discussion");
   const handleSubmit = () => {
     if (!newComment.trim()) return;
     onAddComment(newComment, replyTo);
@@ -43,27 +43,51 @@ export default function CommentForm({
           />
         </Box>
       )}
-      <Box sx={{ display: "flex" , height: "30px" , gap : "15px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          gap: 1.5,
+          alignItems: "center",
+        }}
+      >
         <TextField
-          variant="standard"
-          InputProps={{
-            disableUnderline: true,
-          }}
+          variant="outlined"
           fullWidth
+          multiline
+          maxRows={4}
           placeholder={t("reply")}
-          size="medium"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          sx={{width: "85%"}}
+          // InputProps={{
+          //   disableUnderline: true,
+          //   sx: {
+          //     px: 1,
+          //   },
+          // }}
+          sx={{
+            flex: 1,
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": { border: "none" },
+              padding: "4px 8px", // giảm padding mặc định
+              fontSize: "0.9rem", // chữ nhỏ lại
+              lineHeight: 1.3, // bỏ viền mặc định
+            },
+            "& .MuiInputBase-inputMultiline": {
+              padding: 0, // bỏ padding extra của multiline
+            },
+            bgcolor: "transparent",
+          }}
         />
-          <Button 
-          variant="contained" 
+
+        <Button
+          variant="contained"
           endIcon={<Icon icon="iconamoon:send-bold" width={22} height={22} />}
           onClick={handleSubmit}
           sx={{
-            borderRadius: "50px"
+            borderRadius: "50px",
           }}
-          >
+        >
           {t("comments")}
         </Button>
       </Box>

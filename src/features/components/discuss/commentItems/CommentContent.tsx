@@ -16,8 +16,15 @@ export default function CommentContent({ content, isReply , onReply ,
     <Box sx={{ display: "flex", flexDirection: "column", width : "100%" }}>
       {/* Nếu là reply → chỉ hiển thị content */}
       {isReply ? (
-        <Box sx={{display: "flex"}}>
-            <Typography variant="body2" >
+        <Box sx={{display: "flex" , gap : "120px"}}>
+            <Typography 
+            variant="body2"
+            sx = {{
+              whiteSpace: "pre-line",
+              wordBreak: "break-word",
+              overflowWrap: "anywhere"
+            }}
+            >
             {content}
           </Typography>
           <CommentActions
@@ -34,8 +41,15 @@ export default function CommentContent({ content, isReply , onReply ,
               Nội dung cập nhật:
             </Typography>
           </Box>
-          <Box sx={{display: "flex"}}>
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
+          <Box sx={{display: "flex " , gap : "50px"}}>
+            <Typography 
+            variant="body2" 
+            sx={{ 
+              color: "text.secondary" ,
+              whiteSpace: "pre-line",
+              wordBreak: "break-word",
+              overflowWrap: "anywhere"
+              }}>
             {content}
           </Typography>
           <CommentActions
