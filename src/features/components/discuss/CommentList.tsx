@@ -2,6 +2,7 @@
 import { Box, Typography } from "@mui/material";
 import CommentItem from "./commentItems/CommentItem";
 import { Comment } from "@/types/commentType";
+import { useTranslations } from "next-intl";
 
 type Props = {
   comments: Comment[];
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export default function CommentList({ comments, onReplyRequest }: Props) {
+  const t = useTranslations("discussion")
   const countComments = (list: Comment[]): number =>
     list.reduce((acc, c) => acc + 1 + (c.replies ? countComments(c.replies) : 0), 0);
 
@@ -22,7 +24,7 @@ export default function CommentList({ comments, onReplyRequest }: Props) {
         }}
       >
         <Typography sx={{ margin: "10px", fontWeight: "bold" }}>
-          {countComments(comments)} Bình luận
+          {countComments(comments)} {t("comments")}
         </Typography>
       </Box>
 

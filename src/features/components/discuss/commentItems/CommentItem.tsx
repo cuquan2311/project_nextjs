@@ -1,7 +1,6 @@
 "use client";
 import { Box, Avatar, Card, Typography } from "@mui/material";
 import CommentHeader from "./CommentHeader";
-import CommentActions from "./CommentActions";
 import CommentContent from "./CommentContent";
 import { Comment } from "@/types/commentType";
 import ReplyIcon from "@mui/icons-material/Reply";
@@ -25,7 +24,6 @@ export default function CommentItem({
       sx={{
         display: "flex",
         flexDirection: "column",
-        bgcolor: isReply ? "#f0fdf4" : "white",
         overflow: "hidden",
         paddingRight: "7px"
       }}

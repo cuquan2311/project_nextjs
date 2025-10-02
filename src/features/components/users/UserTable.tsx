@@ -43,6 +43,7 @@ export default function UserTable({ initialUsers }: { initialUsers: User[] }) {
             />
 
             <UserDataGrid
+            
               rows={filteredRows}
               detailUser={detailUser}
               onEdit={(u) => {
@@ -55,7 +56,6 @@ export default function UserTable({ initialUsers }: { initialUsers: User[] }) {
               }}
               onDelete={handleDeleteUser}
               columnsLabels={{
-                id: t("columns.id"),
                 image: t("columns.avatar"),
                 firstName: t("columns.firstName"),
                 lastName: t("columns.lastName"),

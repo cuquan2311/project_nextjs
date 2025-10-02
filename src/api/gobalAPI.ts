@@ -1,10 +1,8 @@
+// api.ts
 import axios from "axios";
 
-const BASE_URL = "https://dummyjson.com";
-
-export const api = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000", // backend NestJS
 });
+
+export default api;

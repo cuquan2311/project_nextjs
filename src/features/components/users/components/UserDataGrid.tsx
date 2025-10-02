@@ -18,7 +18,6 @@ export default function UserDataGrid({
   onDelete: (id: number) => void;
   detailUser: User | null;
   columnsLabels: {
-    id: number | string;
     image: string;
     firstName: string;
     lastName: string;
@@ -29,12 +28,6 @@ export default function UserDataGrid({
   };
 }) {
   const columns: GridColDef[] = [
-    {
-      field: "id",
-      headerName: String(columnsLabels.id),
-      flex: 0.3,
-      minWidth: 60,
-    },
     {
       field: "image",
       headerName: columnsLabels.image,
@@ -124,7 +117,8 @@ export default function UserDataGrid({
       }}
     >
       <Box sx={{ width: "100%", minHeight: 400 }}>
-        <DataGrid
+        <DataGrid 
+        getRowId={(row) => row._id} 
           rows={rows}
           columns={columns}
           autoHeight

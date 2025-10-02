@@ -18,12 +18,16 @@ export default function HeaderDiscuss() {
     <Box>
       <Box>
         {/* Tiêu đề */}
-        <Typography variant="h6" fontWeight="bold" color="black" gutterBottom>
+        <Typography variant="h6" fontWeight="bold" gutterBottom>
           {t("title")}
         </Typography>
 
         {/* Breadcrumb */}
-        <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 2 }}>
+        <Breadcrumbs 
+        aria-label="breadcrumb" 
+        sx={{ mb: 2 }}
+        separator = {<Icon icon="material-symbols:fiber-manual-record" fontSize="small"/>}
+        >
           <Link variant="caption" underline="hover" color="inherit" href="/">
            {t("info")}
           </Link>
