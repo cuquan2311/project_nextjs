@@ -1,5 +1,6 @@
-export type User = {
-  id: number;
+// types/userType.ts
+export interface User {
+  id: string;
   firstName: string;
   lastName: string;
   age: number;
@@ -7,9 +8,8 @@ export type User = {
   email: string;
   phone: string;
   image: string;
-  role?: string;
-  country?: string;
-};
+}
 
-export type UserInput = Omit<UserInput, "id">;
-export type UpdateUser = Partial<UpdateUser>;
+// Kiểu dùng trên FE có id (từ BE)
+export type UserInput = Omit<User, "id" | "rating">;
+export type UpdateUser = Partial<UserInput>;

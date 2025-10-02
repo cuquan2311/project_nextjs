@@ -1,25 +1,32 @@
-import { Product } from "@/types/productType";
-import { api } from "./gobalAPI";
+import { Product, ProductInput, UpdateProduct } from "@/types/productType";
+import api from "./gobalAPI";
 
 export const ProductApi = {
+  //Lấy tất cả products
   getAllProducts: async (): Promise<Product[]> => {
-    const res = await api.get("/products?limit=10");
-    return res.data.products;
-  },
-  getProductsByID: async (id: number): Promise<Product | null> => {
-    const res = await api.get(`products/${id}`);
+    const res = await api.get("/products");
     return res.data;
   },
-  addProduct: async (product: Product): Promise<Product> => {
-    const res = await api.post("/products/add", product);
+
+  getProductByID: async (id: string): Promise<Product> => {
+    const res = await api.get(`/products/${id}`);
     return res.data;
   },
-  updateProduct: async (id: number, product: Product): Promise<Product> => {
-    const { id: _, ...updateProduct } = product;
-    const res = await api.put(`/products/${id}`, updateProduct);
+
+  addProduct: async (product: ProductInput): Promise<Product> => {
+    const res = await api.post("/products", product);
     return res.data;
   },
-  deleteProduct: async (id: number): Promise<Product> => {
+
+  updateProduct: async (
+    id: string,
+    product: UpdateProduct
+  ): Promise<Product> => {
+    const res = await api.put(`/products/${id}`, product);
+    return res.data;
+  },
+
+  deleteProduct: async (id: string): Promise<Product> => {
     const res = await api.delete(`/products/${id}`);
     return res.data;
   },

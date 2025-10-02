@@ -1,6 +1,5 @@
 import * as yup from "yup";
 export const userSchema = yup.object({
-  id: yup.number().required(""),
   firstName: yup.string().required("Họ không được để trống"),
   lastName: yup.string().required("Tên không được để trống"),
   age: yup

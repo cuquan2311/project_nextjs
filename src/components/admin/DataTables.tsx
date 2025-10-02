@@ -47,6 +47,7 @@ export default function DataTables({ users, products }: DataTablesProps) {
           <DataGrid
             autoHeight
             rows={users}
+            getRowId={(row) => row.id}
             columns={userColumns}
             pageSizeOptions={[5, 10]}
             initialState={{
@@ -66,7 +67,8 @@ export default function DataTables({ users, products }: DataTablesProps) {
           </Typography>
           <DataGrid
             autoHeight
-            rows={products}
+            rows={products.map((p, index) => ({ ...p, id: index + 1 }))}
+            getRowId={(row) => row.id}
             columns={productColumns}
             pageSizeOptions={[5, 10]}
             initialState={{

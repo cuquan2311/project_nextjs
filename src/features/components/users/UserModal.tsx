@@ -13,7 +13,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { User } from "@/types/userType";
+import { User, UserInput} from "@/types/userType";
 import { useUserStore } from "@/store/userStore/userStore";
 import { userSchema } from "@/schemas/UserSchemas";
 
@@ -34,19 +34,18 @@ export default function UserModal({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<User>({
+  } = useForm<UserInput>({
     resolver: yupResolver(userSchema),
     defaultValues: {
       firstName: "",
-      lastName: "",
-      age: 0,
-      gender: "",
-      email: "",
-      phone: "",
-      image: "",
+    lastName: "",
+    age: 0,
+    gender: "",
+    email: "",
+    phone: "",
+    image: "",
     },
   });
-
 
   useEffect(() => {
     if (editUser) {
@@ -64,13 +63,17 @@ export default function UserModal({
     }
   }, [editUser, reset]);
 
-  const onSubmit = (data: User) => {
-    if (editUser) {
-      updateUser(editUser.id, data);
-    } else {
-      addUser(data);
+  const onSubmit = async (data: UserInput) => {
+    try {
+      if (editUser) {
+        await updateUser(editUser.id, data); 
+      } else {
+        await addUser(data); 
+      }
+      onClose();
+    } catch (error) {
+      console.error("Failed to save user:", error);
     }
-    onClose();
   };
 
   return (
@@ -79,7 +82,7 @@ export default function UserModal({
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <Grid container spacing={2} sx={{ mt: 1 }}>
-            <Grid size={6}>
+            <Grid size={12}>
               <TextField
                 label={t("columns.firstName")}
                 fullWidth
@@ -88,7 +91,7 @@ export default function UserModal({
                 helperText={errors.firstName?.message}
               />
             </Grid>
-            <Grid size={6}>
+            <Grid size={12}>
               <TextField
                 label={t("columns.lastName")}
                 fullWidth
@@ -97,8 +100,7 @@ export default function UserModal({
                 helperText={errors.lastName?.message}
               />
             </Grid>
-
-            <Grid size={6}>
+            <Grid size={12}>
               <TextField
                 label={t("columns.age")}
                 type="number"
@@ -108,7 +110,7 @@ export default function UserModal({
                 helperText={errors.age?.message}
               />
             </Grid>
-            <Grid size={6}>
+            <Grid size={12}>
               <TextField
                 label={t("columns.gender")}
                 fullWidth
@@ -117,8 +119,7 @@ export default function UserModal({
                 helperText={errors.gender?.message}
               />
             </Grid>
-
-            <Grid size={6}>
+            <Grid size={12}>
               <TextField
                 label={t("columns.email")}
                 fullWidth
@@ -127,7 +128,7 @@ export default function UserModal({
                 helperText={errors.email?.message}
               />
             </Grid>
-            <Grid size={6}>
+            <Grid size={12}>
               <TextField
                 label={t("columns.phone")}
                 fullWidth
@@ -136,8 +137,7 @@ export default function UserModal({
                 helperText={errors.phone?.message}
               />
             </Grid>
-
-            <Grid size={12}>
+            <Grid size ={12}>
               <TextField
                 label={t("columns.avatar")}
                 fullWidth
@@ -148,7 +148,6 @@ export default function UserModal({
             </Grid>
           </Grid>
         </DialogContent>
-
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
           <Button type="submit" variant="contained">

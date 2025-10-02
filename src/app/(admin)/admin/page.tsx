@@ -40,7 +40,7 @@ export default function DashboardPage({
     [products]
   );
   const usersData = useMemo(
-    () => users.map((u, i) => ({ name: u.firstName, value: Math.floor(Math.random() * 100) })),
+    () => (users ?? []).map((u, i) => ({ name: u.firstName, value: Math.floor(Math.random() * 100) })),
     [users]
   );
   const visitsData = useMemo(
@@ -51,10 +51,10 @@ export default function DashboardPage({
     () =>
       Array.from({ length: 10 }, (_, i) => ({
         day: `Day ${i + 1}`,
-        users: users.length ? Math.floor(Math.random() * users.length) : 0,
-        products: products.length ? Math.floor(Math.random() * products.length) : 0,
+        users: users?.length ? Math.floor(Math.random() * users?.length) : 0,
+        products: products?.length ? Math.floor(Math.random() * products?.length) : 0,
       })),
-    [users.length, products.length]
+    [users?.length, products?.length]
   );
 
   if (loading) {

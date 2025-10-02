@@ -17,11 +17,11 @@ export function useUserTable(initialUsers: User[]) {
   const t = useTranslations("confirmModal");
   useEffect(() => {
     if (users.length === 0 && initialUsers.length > 0) {
-      useUserStore.setState({ users: initialUsers });
+      useUserStore.setState({ users: initialUsers as User[] });
     }
   }, [initialUsers, users.length]);
 
-  const handleDeleteUser = async (id: number) => {
+  const handleDeleteUser = async (id: string) => {
     const confirmed = await confirmDelete(
       t("title"),
       t("message"),
