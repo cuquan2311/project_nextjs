@@ -15,10 +15,10 @@ export default function ProductDataGrid({
   rows: GridRowsProp;
   onEdit: (p: Product) => void;
   onView: (p: Product) => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
   detailProduct: Product | null;
   columnsLabels: {
-    id: number | string;
+    id: string;
     image: string;
     name: string;
     price: string;

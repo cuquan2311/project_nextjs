@@ -3,6 +3,7 @@ import { Product, ProductInput, UpdateProduct } from "@/types/productType";
 import { create } from "zustand";
 import { useNotificationStore } from "../NotificationStore";
 import api from "@/api/gobalAPI";
+import axios, { AxiosError } from "axios";
 interface ProductState {
   products: Product[];
   isLoading: boolean;
@@ -31,13 +32,32 @@ export const useProductStore = create<ProductState & ProductActions>((set) => ({
     }
   },
 
-  addProduct: async (product: ProductInput) => {
+  addProduct: async (data: ProductInput) => {
+    set({ isLoading: true, error: null });
     try {
-      const { data } = await api.post<Product>("/products", product);
-      set((state) => ({ products: [...state.products, data] }));
-    } catch (error) {
-      set({ error: "Failed to add product." });
-      console.error(error);
+      const res = await axios.post<Product>(
+        "http://localhost:4000/products",
+        data
+      );
+      set((state) => ({
+        products: [...state.products, res.data],
+        loading: false,
+      }));
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        const axiosErr = err as AxiosError<{ message?: string }>;
+        console.error(
+          "Add product error:",
+          axiosErr.response?.data || axiosErr.message
+        );
+        set({
+          error: axiosErr.response?.data?.message || "Failed to add product.",
+          isLoading: false,
+        });
+      } else {
+        console.error("Add product error:", err);
+        set({ error: "Unknown error occurred.", isLoading: false });
+      }
     }
   },
 
@@ -45,7 +65,9 @@ export const useProductStore = create<ProductState & ProductActions>((set) => ({
     try {
       const { data } = await api.put<Product>(`/products/${id}`, product);
       set((state) => ({
-        products: state.products.map((p) => (p.id === id ? data : p)),
+        products: state.products.map((p) =>
+          p.id === id ? { ...p, ...data } : p
+        ),
       }));
     } catch (error) {
       set({ error: "Failed to update product." });

@@ -19,7 +19,7 @@ export function useProductTable(initialProducts: Product[]) {
     }
   }, [initialProducts, products.length]);
 
-  const handleDeleteProduct = async (id: number) => {
+  const handleDeleteProduct = async (id: string) => {
     const confirmed = await confirmDelete(
       t("title"),
       t("message"),

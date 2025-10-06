@@ -1,15 +1,20 @@
-export interface Product {
+export type Product = {
   id: string;
   title: string;
   description: string;
   price: number;
   stock: number;
-  discountPercentage: number;
-  thumbnail: string;
   brand: string;
   category: string;
-  rating: number;
-}
+  discountPercentage?: number;
+  rating?: number;
+  thumbnail?: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
 
-export type ProductInput = Omit<ProductInput, "id" | "rating">;
-export type UpdateProduct = Partial<CreateProduct>;
+// ✅ Input type khớp với schema (InferType)
+export type ProductInput = InferType<typeof productSchema>;
+
+// Input khi update product
+export type UpdateProduct = Partial<ProductInput>;
