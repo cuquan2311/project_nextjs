@@ -4,6 +4,7 @@ import { Drawer, Divider, Box } from "@mui/material";
 import SidebarMenu from "./components/SidebarMenu";
 import SidebarHeader from "./components/SidebarHeader";
 import SidebarSection from "./components/SidebarSection";
+import HeaderUser from "../headerAdmin/HeaderUser";
 
 const drawerWidth = 240;
 const collapsedWidth = 64;
@@ -53,6 +54,8 @@ export default function Sidebar({
       <SidebarMenu open={open} />
       <Divider />
       <SidebarSection open={open} />
+      <Divider />
+      <HeaderUser openSidebar={open}/>
     </Drawer>
 
   );

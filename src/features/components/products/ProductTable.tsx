@@ -79,7 +79,6 @@ export default function ProductTable({ initialProducts }: { initialProducts: Pro
               }}
               onDelete={handleDeleteProduct}
               columnsLabels={{
-                id: t("ID"),
                 image: t("image"),
                 name: t("name"),
                 price: t("price"),

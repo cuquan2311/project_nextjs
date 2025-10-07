@@ -13,8 +13,5 @@ export type Product = {
   updatedAt?: string;
 };
 
-// ✅ Input type khớp với schema (InferType)
 export type ProductInput = InferType<typeof productSchema>;
-
-// Input khi update product
 export type UpdateProduct = Partial<ProductInput>;

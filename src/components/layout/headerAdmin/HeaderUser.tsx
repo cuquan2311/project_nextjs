@@ -22,13 +22,14 @@ import {
   Logout as LogoutIcon,
   HelpOutline as HelpIcon,
   ContactSupport as ContactIcon,
-  AdminPanelSettings as AdminPanelSettingsIcon
+  AdminPanelSettings as AdminPanelSettingsIcon,
 } from "@mui/icons-material";
 import { useAuthStore } from "@/store/AuthStore";
 import Link from "next/link";
 import LanguageSwitcher from "@/components/language/LanguageButton";
+import { SimpleThemeToggle } from "@/components/theme/ThemeToggle";
 
-export default function HeaderUser() {
+export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
   const { isAuthenticated, userAcccout, logout } = useAuthStore();
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -56,12 +57,77 @@ export default function HeaderUser() {
   ];
 
   return (
-    <>
-      <Button onClick={handleToggle} sx={{ p: 0 }}>
-        <Avatar src={userAcccout.avatar} sx={{ width: 36, height: 36 }} />
-      </Button>
+    <Box
+      sx={{
+        width: "100%",
+        textAlign: "center",
+        p: 2,
+        display: "flex",
+        justifyContent: openSidebar ? "flex-start" : "center",
+        alignItems: "center",
+      }}
+    >
+      {openSidebar ? (
+        <Box display="flex" alignItems="center" gap={1}>
+          <Box sx={{ textAlign: "left" }}>
+            <Typography variant="subtitle2" fontWeight={600}>
+              {userAcccout.fullName}
+            </Typography>
+            <Typography variant="subtitle2" color="text.secondary">
+              {userAcccout.email}
+            </Typography>
+          </Box>
 
-      {/* Drawer mặc định có animation sẵn */}
+          <Button
+            onClick={handleToggle}
+            sx={{
+              minWidth: "auto",
+              ml: 1,
+              p: 0.3,
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Avatar
+              src={userAcccout.avatar}
+              sx={{
+                width: 40,
+                height: 40,
+                border: "2px solid",
+                borderColor: theme.palette.divider,
+              }}
+            />
+          </Button>
+        </Box>
+      ) : (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Button
+            onClick={handleToggle}
+            sx={{
+              minWidth: "auto",
+              p: 0.3,
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Avatar
+              src={userAcccout.avatar}
+              sx={{
+                width: 38,
+                height: 38,
+                border: "2px solid",
+                borderColor: theme.palette.divider,
+              }}
+            />
+          </Button>
+        </Box>
+      )}
+
+      {/* Drawer */}
       <Drawer
         anchor="right"
         open={open}
@@ -76,11 +142,10 @@ export default function HeaderUser() {
             height: "100%",
             bgcolor: theme.palette.background.paper,
             boxShadow: 6,
-            overflowX: "hidden"
           },
         }}
       >
-        {/* Top */}
+        {/* Top info */}
         <Box textAlign="center" mb={2}>
           <Avatar
             src={userAcccout.avatar}
@@ -128,14 +193,58 @@ export default function HeaderUser() {
           </Box>
         </Box>
 
-        {/* Menu items */}
-        <Box flexGrow={1} overflow="hiden">
+        {/* Language + Theme */}
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          sx={{
+            width: "100%",
+            borderRadius: 2,
+            boxShadow: 1,
+          }}
+        >
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+              width: "100%",
+              transition: "all 0.3s ease",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+          >
+            <LanguageSwitcher />
+          </Box>
+
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ borderColor: theme.palette.divider }}
+          />
+
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+              width: "100%",
+              transition: "all 0.3s ease",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+          >
+            <SimpleThemeToggle />
+          </Box>
+        </Box>
+
+        {/* Menu */}
+        <Box flexGrow={1} overflow="hidden">
           <List>
             {menuItems.map((item) => (
               <ListItemButton
                 key={item.text}
                 component={Link}
-                href={item.href} 
+                href={item.href}
                 sx={{
                   borderRadius: 2,
                   mb: 1,
@@ -200,6 +309,6 @@ export default function HeaderUser() {
           Logout
         </Button>
       </Drawer>
-    </>
+    </Box>
   );
 }

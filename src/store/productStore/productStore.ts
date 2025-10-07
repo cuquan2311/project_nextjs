@@ -41,7 +41,7 @@ export const useProductStore = create<ProductState & ProductActions>((set) => ({
       );
       set((state) => ({
         products: [...state.products, res.data],
-        loading: false,
+        isLoading: false,
       }));
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -63,15 +63,25 @@ export const useProductStore = create<ProductState & ProductActions>((set) => ({
 
   updateProduct: async (id: string, product: UpdateProduct) => {
     try {
-      const { data } = await api.put<Product>(`/products/${id}`, product);
+      const {
+        _id,
+        id: productId,
+        createdAt,
+        updatedAt,
+        __v,
+        ...cleanProduct
+      } = product;
+
+      const { data } = await api.put<Product>(`/products/${id}`, cleanProduct);
+
       set((state) => ({
         products: state.products.map((p) =>
           p.id === id ? { ...p, ...data } : p
         ),
       }));
     } catch (error) {
+      console.error(" Failed to update product:", error);
       set({ error: "Failed to update product." });
-      console.error(error);
     }
   },
 

@@ -60,12 +60,6 @@ export default function SidebarMenu({ open }: { open: boolean }) {
           open={open}
           pathname={pathname}
         />
-
-        <Box sx={{ mt: 3, px: 1, display: "flex", flexDirection: "column", gap: 1 }}>
-          <SimpleThemeToggle />
-          <LanguageSwitcher />
-          <HeaderUser />
-        </Box>
       </List>
     );
   } else {
@@ -88,12 +82,6 @@ export default function SidebarMenu({ open }: { open: boolean }) {
             isActive={pathname === item.href}
           />
         ))}
-
-        <Box sx={{ mt: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 1 }}>
-          <SimpleThemeToggle />
-          <LanguageSwitcher />
-          <HeaderUser />
-        </Box>
       </List>
     );
   }

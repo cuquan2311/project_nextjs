@@ -18,7 +18,6 @@ export default function ProductDataGrid({
   onDelete: (id: string) => void;
   detailProduct: Product | null;
   columnsLabels: {
-    id: string;
     image: string;
     name: string;
     price: string;
@@ -30,15 +29,9 @@ export default function ProductDataGrid({
 }) {
   const columns: GridColDef[] = [
     {
-      field: "id",
-      headerName: String(columnsLabels.id),
-      flex: 0.3,
-      minWidth: 60,
-    },
-    {
       field: "thumbnail",
       headerName: columnsLabels.image,
-      flex: 0.5,
+      flex: 0.6,
       minWidth: 80,
       sortable: false,
       renderCell: (params) => (
@@ -51,17 +44,30 @@ export default function ProductDataGrid({
             height: "100%",
           }}
         >
-          <img
-            src={params.value}
-            alt={params.row.title}
-            style={{
-              maxWidth: "50px",
-              maxHeight: "50px",
-              objectFit: "contain",
-              border: "1px solid",
+          <Box
+            sx={{
+              width: 50,
+              height: 50,
               borderRadius: "50%",
+              overflow: "hidden",
+              border: "2px solid #e0e0e0",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
+              "&:hover": {
+                transform: "scale(1.1)",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+              },
             }}
-          />
+          >
+            <img
+              src={params.value}
+              alt={params.row.title}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
         </Box>
       ),
     },
@@ -76,6 +82,7 @@ export default function ProductDataGrid({
       headerName: columnsLabels.price,
       flex: 1,
       minWidth: 80,
+      renderCell: (params) => `$${params.value}`,
     },
     {
       field: "stock",
@@ -142,6 +149,9 @@ export default function ProductDataGrid({
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",
+          },
+          "& .MuiDataGrid-row:hover": {
+            backgroundColor: "action.hover",
           },
         }}
       />
