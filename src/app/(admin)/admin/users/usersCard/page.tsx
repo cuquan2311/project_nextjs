@@ -1,8 +1,15 @@
-import { getUsersCard } from '@/api/cardUserAPI'
+"use client"
 import UserCardGrid from '@/features/components/usersCard/UserCardGrid';
-import React from 'react'
+import { useUserStore } from '@/store/userStore/userStore';
+import React, { useEffect } from 'react'
 
-export default async function UserCardPage() {
-  const userCard = await getUsersCard()
-  return <UserCardGrid users={userCard} />;
+export default function UserCardPage() {
+   const { users, isLoading, error, fetchUsers } = useUserStore();
+  useEffect(()=> {
+    fetchUsers();
+
+  },[fetchUsers])
+  if (isLoading) return <p className="text-center mt-5">Loading users...</p>;
+  if (error) return <p className="text-center text-danger">{error}</p>;
+  return <UserCardGrid users={users ?? []} />;
 }

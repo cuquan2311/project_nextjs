@@ -1,16 +1,25 @@
 "use client";
 
-import { Grid, Box, Typography, Container, Toolbar, IconButton, InputBase, Button } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Typography,
+  Container,
+  Toolbar,
+  IconButton,
+  InputBase,
+  Button,
+} from "@mui/material";
 import UserCard from "./UserCard";
-import { CardUserType } from "@/types/cardUserType";
 import { AddCircle, Search } from "@mui/icons-material";
 import { useState } from "react";
 import UserModal from "../users/UserModal";
+import { User } from "@/types/userType";
 
-export default function UserCardGrid({ users }: { users: CardUserType[] }) {
-  const [showSearch, setShowSearch] = useState(false)
-  const [searchText, setSearchText] = useState("")
-  const [openModal, setOpenModal] = useState(false)
+export default function UserCardGrid({ users }: { users: User[] }) {
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   return (
     <Box
       sx={{
@@ -29,10 +38,11 @@ export default function UserCardGrid({ users }: { users: CardUserType[] }) {
 
           <Box className="user-toolbar__actions">
             <Box
-              className={`user-toolbar__search-container ${showSearch
-                ? "user-toolbar__search-container--open"
-                : "user-toolbar__search-container--closed"
-                }`}
+              className={`user-toolbar__search-container ${
+                showSearch
+                  ? "user-toolbar__search-container--open"
+                  : "user-toolbar__search-container--closed"
+              }`}
             >
               <IconButton onClick={() => setShowSearch((prev) => !prev)}>
                 <Search />
@@ -41,13 +51,13 @@ export default function UserCardGrid({ users }: { users: CardUserType[] }) {
                 placeholder="Search..."
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
-                className={`user-toolbar__search-input ${showSearch
-                  ? "user-toolbar__search-input--open"
-                  : "user-toolbar__search-input--closed"
-                  }`}
+                className={`user-toolbar__search-input ${
+                  showSearch
+                    ? "user-toolbar__search-input--open"
+                    : "user-toolbar__search-input--closed"
+                }`}
               />
             </Box>
-
 
             <Button
               variant="contained"
@@ -60,10 +70,8 @@ export default function UserCardGrid({ users }: { users: CardUserType[] }) {
         </Toolbar>
 
         <Grid container spacing={3} justifyContent="center">
-          {users.map((user) => (
-            <Grid size={{
-              xs: 12, sm: 6, md: 4, lg: 3
-            }} key={user.id}>
+          {(users ?? []).map((user) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={user.id}>
               <UserCard user={user} />
             </Grid>
           ))}
@@ -72,7 +80,7 @@ export default function UserCardGrid({ users }: { users: CardUserType[] }) {
       <UserModal
         open={openModal}
         onClose={() => {
-          setOpenModal(false)
+          setOpenModal(false);
         }}
       />
     </Box>

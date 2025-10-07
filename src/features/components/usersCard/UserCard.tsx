@@ -23,8 +23,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import { CardUserType } from "@/types/cardUserType";
+import { User } from "@/types/userType";
 
-export default function UserCard({ user }: { user: CardUserType }) {
+export default function UserCard({ user }: { user: User }) {
   const [showPassword, setShowPassword] = useState(false);
   const theme = useTheme();
   return (
@@ -99,35 +100,8 @@ export default function UserCard({ user }: { user: CardUserType }) {
           }}>
             <InfoItem icon={<PhoneIcon />} label="Phone" value={user.phone} tooltip />
           </Grid>
-          <Grid size={{
-            xs: 12
-          }}>
-            <InfoItem icon={<CakeIcon />} label="Birth" value={user.birthDate} />
-          </Grid>
-          <Grid size={{
-            xs: 12
-          }}>
-            <InfoItem icon={<HomeIcon />} label="Country" value={user.address.country} />
-          </Grid>
-          <Grid size={{
-            xs: 12
-          }}>
-            <InfoItem icon={<PersonIcon />} label="Username" value={user.username} />
-          </Grid>
-          <Grid size={{
-            xs: 12
-          }}>
-            <InfoItem
-              icon={<VpnKeyIcon />}
-              label="Password"
-              value={user.password}
-              isPassword
-              showPassword={showPassword}
-              togglePassword={() => setShowPassword(!showPassword)}
-            />
-          </Grid>
           <Grid size={12}>
-            <InfoItem icon={<VpnKeyIcon />} label="IP" value={user.ip} tooltip />
+            <InfoItem icon={<VpnKeyIcon />} label="IP" value={user.id} tooltip />
           </Grid>
         </Grid>
       </CardContent>

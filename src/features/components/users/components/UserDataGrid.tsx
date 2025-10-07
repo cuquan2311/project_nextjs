@@ -15,7 +15,7 @@ export default function UserDataGrid({
   rows: GridRowsProp;
   onEdit: (p: User) => void;
   onView: (p: User) => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
   detailUser: User | null;
   columnsLabels: {
     image: string;

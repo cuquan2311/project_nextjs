@@ -30,7 +30,7 @@ export default function MailList({
   setSelectedMails: React.Dispatch<React.SetStateAction<string[]>>;
   selectedCategory: string;
   search: string;
-  setMessages: (updater: (state: { messages: ContactMessage[] }) => { messages: ContactMessage[] }) => void;
+  setMessages: (messages: ContactMessage[]) => void;
 }) {
   // lọc mail theo category và search
   const filteredMails = mails
@@ -49,13 +49,14 @@ export default function MailList({
 
   // khi chọn mail để đọc
   const handleSelectMail = (mail: ContactMessage) => {
-    setSelectedMail(mail);
-    setMessages((state: { messages: ContactMessage[] }) => ({
-      messages: state.messages.map((m: ContactMessage) =>
-        m.id === mail.id ? { ...m, read: true } : m
-      ),
-    }));
-  };
+  setSelectedMail(mail);
+
+  const updatedMessages = mails.map((m) =>
+    m.id === mail.id ? { ...m, read: true } : m
+  );
+
+  setMessages(updatedMessages); 
+};
 
   const handleToggleSelectMail = (id: string) => {
     setSelectedMails((prev: string[]) =>

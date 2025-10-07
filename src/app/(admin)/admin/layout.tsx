@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Box } from "@mui/material";
-import HeaderAdmin from "@/components/layout/HeaderAdmin";
 import SidebarToggle from "@/components/layout/sidebar/SidebarToggle";
 
 interface AdminLayoutProps {

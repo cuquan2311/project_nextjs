@@ -13,7 +13,7 @@ export default function RowActions({
   user: User;
   onEdit: (u: User) => void;
   onView: (u: User) => void;
-  onDelete: (id: number) => void
+  onDelete: (id: string) => void
   isCompact?: boolean;
 }) {
   const theme = useTheme()
