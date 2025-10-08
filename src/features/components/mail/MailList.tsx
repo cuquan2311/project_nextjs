@@ -36,7 +36,9 @@ export default function MailList({
   const filteredMails = mails
     .filter((mail) => {
       if (selectedCategory === "all") return true;
-      if (["feedback", "bug", "suggestion", "share"].includes(selectedCategory)) {
+      if (
+        ["feedback", "bug", "suggestion", "share"].includes(selectedCategory)
+      ) {
         return mail.subType === selectedCategory && mail.type === "inbox";
       }
       return mail.type === selectedCategory;
@@ -49,18 +51,20 @@ export default function MailList({
 
   // khi chọn mail để đọc
   const handleSelectMail = (mail: ContactMessage) => {
-  setSelectedMail(mail);
+    setSelectedMail(mail);
 
-  const updatedMessages = mails.map((m) =>
-    m.id === mail.id ? { ...m, read: true } : m
-  );
+    const updatedMessages = mails.map((m) =>
+      m.id === mail.id ? { ...m, read: true } : m
+    );
 
-  setMessages(updatedMessages); 
-};
+    setMessages(updatedMessages);
+  };
 
   const handleToggleSelectMail = (id: string) => {
     setSelectedMails((prev: string[]) =>
-      prev.includes(id) ? prev.filter((mailId: string) => mailId !== id) : [...prev, id]
+      prev.includes(id)
+        ? prev.filter((mailId: string) => mailId !== id)
+        : [...prev, id]
     );
   };
 
@@ -109,7 +113,9 @@ export default function MailList({
                   sx={{ mr: 1 }}
                 />
                 <Box sx={{ flex: 1, overflow: "hidden" }}>
-                  <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
                     <Typography
                       variant="subtitle2"
                       fontWeight={!mail.read ? 600 : 400}
