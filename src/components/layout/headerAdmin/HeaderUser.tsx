@@ -24,19 +24,19 @@ import {
   ContactSupport as ContactIcon,
   AdminPanelSettings as AdminPanelSettingsIcon,
 } from "@mui/icons-material";
-import { useAuthStore } from "@/store/AuthStore";
 import Link from "next/link";
 import LanguageSwitcher from "@/components/language/LanguageButton";
 import { SimpleThemeToggle } from "@/components/theme/ThemeToggle";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
-  const { isAuthenticated, userAcccout, logout } = useAuthStore();
+  const {  user, logout } = useAuthStore();
   const [open, setOpen] = useState(false);
   const theme = useTheme();
 
-  if (!isAuthenticated || !userAcccout) {
+  if (!user) {
     return (
-      <Button variant="contained" sx={{ borderRadius: 2 }} href="/login">
+      <Button variant="contained" sx={{ borderRadius: 2 }} href="/auth/login">
         Đăng nhập
       </Button>
     );
@@ -71,10 +71,10 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
         <Box display="flex" alignItems="center" gap={1}>
           <Box sx={{ textAlign: "left" }}>
             <Typography variant="subtitle2" fontWeight={600}>
-              {userAcccout.fullName}
+              {user.username}
             </Typography>
             <Typography variant="subtitle2" color="text.secondary">
-              {userAcccout.email}
+              {user.email}
             </Typography>
           </Box>
 
@@ -90,8 +90,9 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
               justifyContent: "center",
             }}
           >
-            <Avatar
-              src={userAcccout.avatar}
+            {user.avatar ? (
+              <Avatar
+              src={user.avatar}
               sx={{
                 width: 40,
                 height: 40,
@@ -99,6 +100,9 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
                 borderColor: theme.palette.divider,
               }}
             />
+            ): (
+              <Avatar src="/broken-image.jpg" />
+            )}
           </Button>
         </Box>
       ) : (
@@ -114,15 +118,19 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
               justifyContent: "center",
             }}
           >
-            <Avatar
-              src={userAcccout.avatar}
+            {user.avatar ? (
+              <Avatar
+              src={user.avatar}
               sx={{
-                width: 38,
-                height: 38,
+                width: 40,
+                height: 40,
                 border: "2px solid",
                 borderColor: theme.palette.divider,
               }}
             />
+            ): (
+              <Avatar src="/broken-image.jpg" />
+            )}
           </Button>
         </Box>
       )}
@@ -147,8 +155,9 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
       >
         {/* Top info */}
         <Box textAlign="center" mb={2}>
-          <Avatar
-            src={userAcccout.avatar}
+          {user.avatar ? (
+            <Avatar
+            src={user.avatar}
             sx={{
               width: 100,
               height: 100,
@@ -158,11 +167,24 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
               "&:hover": { transform: "scale(1.05)" },
             }}
           />
+          ) : (
+            <Avatar 
+             src="/broken-image.jpg"
+              sx={{
+              width: 100,
+              height: 100,
+              mx: "auto",
+              mb: 2,
+              transition: "transform 0.3s",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+             />
+          )}
           <Typography variant="h6" fontWeight={600}>
-            {userAcccout.fullName}
+            {user.username}
           </Typography>
           <Typography variant="body2" color="text.secondary" mb={1}>
-            {userAcccout.email}
+            {user.email}
           </Typography>
 
           <Box display="flex" justifyContent="center" gap={1}>
@@ -187,7 +209,7 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
               }}
             >
               <Typography variant="caption" fontWeight={600}>
-                Admin
+                {(user.role).toUpperCase()}
               </Typography>
             </Paper>
           </Box>

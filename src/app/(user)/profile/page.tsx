@@ -8,21 +8,21 @@ import CreatePost from "@/features/components/profile/CreatePost";
 import NotLoggedIn from "@/features/components/profile/NotLoggedIn";
 import PostList from "@/features/components/profile/PostList";
 import StatsSection from "@/features/components/profile/StatsSection";
-import { useAuthStore } from "@/store/AuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 import { Box, Paper, useTheme } from "@mui/material";
 import React, { ChangeEvent, useState } from "react";
 
 type Post = { content: string; date: string };
 
 export default function Page() {
-  const { userAcccout, logout, updateUser } = useAuthStore();
+  const {user, updateUser, logout} = useAuthStore()
   const [coverPhoto, setCoverPhoto] = useState("");
-  const [avatar, setAvatar] = useState(userAcccout?.avatar || "");
+  const [avatar, setAvatar] = useState(user?.avatar || "");
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPost, setNewPost] = useState("");
   const theme = useTheme();
 
-  if (!userAcccout) return (
+  if (!user) return (
     <>
       <Header />
       <NotLoggedIn />
@@ -72,8 +72,8 @@ export default function Page() {
         >
           <AvatarSection
             avatar={avatar}
-            fullName={userAcccout.fullName}
-            email={userAcccout.email}
+            fullName={user.username}
+            email={user.email}
             onUpload={handleAvatarUpload}
           />
           <StatsSection />
