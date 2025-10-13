@@ -5,7 +5,7 @@ export interface UserAuth {
   email: string;
   username: string;
   phone?: string;
-  avatar?: string;
+  avatar?: string | File;
   password?: string;
   role: Role;
   isVerified: boolean;

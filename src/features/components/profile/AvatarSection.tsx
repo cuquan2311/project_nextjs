@@ -2,7 +2,7 @@
 
 import { Avatar, Box, IconButton, Typography, useTheme } from "@mui/material";
 import { PhotoCamera } from "@mui/icons-material";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 
 export default function AvatarSection({
   avatar,
@@ -10,17 +10,23 @@ export default function AvatarSection({
   email,
   onUpload,
 }: {
-  avatar: string;
+  avatar: string | File;
   fullName: string;
   email: string;
   onUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 }) {
   const theme = useTheme();
-
+  useEffect(() => {
+    return () => {
+      if(typeof avatar !== "string") {
+        URL.revokeObjectURL(URL.createObjectURL(avatar))
+      }
+    }
+  },[avatar])
   return (
     <Box textAlign="center" position="relative" mb={4} sx={{ pt: 2 }}>
       <Avatar
-        src={avatar}
+        src={typeof avatar === "string" ? avatar : URL.createObjectURL(avatar)}
         alt={fullName}
         sx={{
           width: { xs: 100, md: 140 },

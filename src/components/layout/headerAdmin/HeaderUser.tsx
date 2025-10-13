@@ -271,7 +271,7 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
                   borderRadius: 2,
                   mb: 1,
                   transition: "all 0.3s",
-                  "&:hover": {
+                  "&:hover": { 
                     bgcolor: theme.palette.primary.light,
                     transform: "translateX(5px)",
                   },

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { IconButton, Menu, MenuItem, Tooltip, Box } from "@mui/material";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { Icon } from "@iconify/react"; // ✅ Dùng iconify
 import { routing } from "@/i18n/routing";
 
@@ -16,13 +16,21 @@ const flagIcons: Record<Locale, string> = {
 
 export default function LanguageSwitcher() {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-
+  const [isPending, startTransition] = useTransition()
  
-  const [currentLang, setCurrentLang] = useState<Locale>(() => {
-    const match = document.cookie.match(/lang=(\w+)/);
-    return (match?.[1] as Locale) || "en";
-  });
+  // const [currentLang, setCurrentLang] = useState<Locale>(() => {
+  //   const match = document.cookie.match(/lang=(\w+)/);
+  //   return (match?.[1] as Locale) || "en";
+  // });
+
+  const [currentLang,setCurrentLang] = useState<Locale>("en")
+
+  useEffect(() => {
+    const match = document.cookie.match(/lang=(\w+)/)
+    if (match?.[1]) {
+    setCurrentLang(match[1] as Locale);
+    }
+  },[])
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

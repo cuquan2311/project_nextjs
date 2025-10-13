@@ -15,30 +15,33 @@ import React, { ChangeEvent, useState } from "react";
 type Post = { content: string; date: string };
 
 export default function Page() {
-  const {user, updateUser, logout} = useAuthStore()
+  const { user, updateUser, logout } = useAuthStore();
   const [coverPhoto, setCoverPhoto] = useState("");
   const [avatar, setAvatar] = useState(user?.avatar || "");
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPost, setNewPost] = useState("");
   const theme = useTheme();
 
-  if (!user) return (
-    <>
-      <Header />
-      <NotLoggedIn />
-    </>
-  );
+  if (!user)
+    return (
+      <>
+        <Header />
+        <NotLoggedIn />
+      </>
+    );
 
   const handleAvatarUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const result = reader.result as string;
-        setAvatar(result);
-        updateUser({ avatar: result })
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Preview tạm
+    setAvatar(URL.createObjectURL(file));
+
+    // FormData để gửi lên BE
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    updateUser(formData);
   };
 
   const handleCoverUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +54,10 @@ export default function Page() {
 
   const handleCreatePost = () => {
     if (newPost.trim() === "") return;
-    setPosts([{ content: newPost, date: new Date().toLocaleString() }, ...posts]);
+    setPosts([
+      { content: newPost, date: new Date().toLocaleString() },
+      ...posts,
+    ]);
     setNewPost("");
   };
 
@@ -71,14 +77,18 @@ export default function Page() {
           }}
         >
           <AvatarSection
-            avatar={avatar}
+            avatar={avatar ? `/uploads/avatar/${avatar}` : ''}
             fullName={user.username}
             email={user.email}
             onUpload={handleAvatarUpload}
           />
           <StatsSection />
           <ActionButtons onLogout={logout} />
-          <CreatePost newPost={newPost} setNewPost={setNewPost} onCreate={handleCreatePost} />
+          <CreatePost
+            newPost={newPost}
+            setNewPost={setNewPost}
+            onCreate={handleCreatePost}
+          />
           <PostList posts={posts} />
         </Paper>
       </Box>

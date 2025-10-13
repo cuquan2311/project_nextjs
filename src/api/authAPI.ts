@@ -28,8 +28,18 @@ export const AuthApi = {
   },
 
   //! Cập nhật user
-  updateUser: async (_id: string, data: Partial<UserAuth>) => {
-    const res = await api.put(`/auth/update/${_id}`, data);
-    return res.data;
+  updateUser: async (
+    _id: string,
+    data: Partial<UserAuth> | FormData,
+    isFormData = false
+  ) => {
+    if (isFormData) {
+      return (
+        await api.put(`/auth/update/${_id}`, data, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+      ).data;
+    }
+    return (await api.put(`/auth/update/${_id}`, data)).data;
   },
 };
