@@ -7,7 +7,10 @@ interface AuthState {
   user: UserAuth | null;
   token: string | null;
   setAuth: (user: UserAuth, token: string) => void;
-  updateUser: (data: Partial<UserAuth> | FormData) => Promise<void>;
+  updateUser: (
+    _id: string,
+    data: Partial<UserAuth> | FormData
+  ) => Promise<void>;
   logout: () => void;
 }
 
@@ -21,16 +24,16 @@ export const useAuthStore = create<AuthState>()(
         console.log("🚀 ~ token:", token);
         return set({ user, token });
       },
-      updateUser: async (updatedUser: Partial<UserAuth> | FormData) => {
-        const current = get().user;
-        if (!current) return;
-
+      updateUser: async (
+        _id: string,
+        updatedUser: Partial<UserAuth> | FormData
+      ) => {
         try {
           let res;
           if (updatedUser instanceof FormData) {
-            res = await AuthApi.updateUser(current._id, updatedUser, true);
+            res = await AuthApi.updateUser(_id, updatedUser, true);
           } else {
-            res = await AuthApi.updateUser(current._id, updatedUser);
+            res = await AuthApi.updateUser(_id, updatedUser);
           }
           set({ user: res });
         } catch (err) {

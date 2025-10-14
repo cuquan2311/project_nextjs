@@ -130,7 +130,7 @@ export default function RegisterForm() {
         </form>
       </Paper>
 
-      {otpOpen && (
+      {otpOpen && (   
         <OtpModal
           open={otpOpen}
           email={registeredEmail}

@@ -21,7 +21,6 @@ export default function Page() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPost, setNewPost] = useState("");
   const theme = useTheme();
-
   if (!user)
     return (
       <>
@@ -30,19 +29,16 @@ export default function Page() {
       </>
     );
 
-  const handleAvatarUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const handleAvatarUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  console.log("🚀 ~ handleAvatarUpload ~ user:", user.avatar)
+  if (!file || !user?._id) return;
 
-    // Preview tạm
-    setAvatar(URL.createObjectURL(file));
+  const formData = new FormData();
+  formData.append("avatar", file);
 
-    // FormData để gửi lên BE
-    const formData = new FormData();
-    formData.append('avatar', file);
-
-    updateUser(formData);
-  };
+  await updateUser(user._id, formData); 
+};
 
   const handleCoverUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -77,7 +73,7 @@ export default function Page() {
           }}
         >
           <AvatarSection
-            avatar={avatar ? `/uploads/avatar/${avatar}` : ''}
+            avatar={user.avatar}
             fullName={user.username}
             email={user.email}
             onUpload={handleAvatarUpload}

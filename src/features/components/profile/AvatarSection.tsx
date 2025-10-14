@@ -10,23 +10,33 @@ export default function AvatarSection({
   email,
   onUpload,
 }: {
-  avatar: string | File;
+   avatar?: string | File;
   fullName: string;
   email: string;
   onUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 }) {
   const theme = useTheme();
   useEffect(() => {
-    return () => {
-      if(typeof avatar !== "string") {
-        URL.revokeObjectURL(URL.createObjectURL(avatar))
-      }
-    }
-  },[avatar])
+  let objectUrl: string | undefined;
+
+  if (avatar && typeof avatar !== "string") {
+    objectUrl = URL.createObjectURL(avatar);
+  }
+
+  return () => {
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+  };
+}, [avatar]);
   return (
     <Box textAlign="center" position="relative" mb={4} sx={{ pt: 2 }}>
       <Avatar
-        src={typeof avatar === "string" ? avatar : URL.createObjectURL(avatar)}
+       src={
+  avatar
+    ? typeof avatar === "string"
+      ? avatar
+      : URL.createObjectURL(avatar)
+    : "/default-avatar.png" // ảnh mặc định
+}
         alt={fullName}
         sx={{
           width: { xs: 100, md: 140 },

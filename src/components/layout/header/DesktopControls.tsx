@@ -4,8 +4,8 @@ import {
 } from "@mui/material";
 import { SimpleThemeToggle } from "@/components/theme/ThemeToggle";
 import LanguageSwitcher from "@/components/language/LanguageButton"
-import HeaderUser from "../headerAdmin/HeaderUser";
 import { TheaterComedy } from "@mui/icons-material";
+import HeaderUser from "../headerAdmin/HeaderUser";
 
 export default function DesktopControls() {
   return (

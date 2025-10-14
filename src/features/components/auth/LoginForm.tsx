@@ -1,58 +1,22 @@
 "use client"
 
-import { AuthApi } from "@/api/authAPI";
 import { loginSchema } from "@/schemas/authSchemas";
-import { useAuthStore } from "@/store/useAuthStore";
 import { LoginInput } from "@/types/authType";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Button, Checkbox, CircularProgress, FormControlLabel, Link, Paper, TextField, Typography } from "@mui/material";
-import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import useAuth from "./hooks/useAuth";
 
 export default function LoginForm() {
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const { setAuth } = useAuthStore();
-
+  const {onSubmit, loading} = useAuth()
   const {
     register,
-    handleSubmit,
+    handleSubmit, 
     formState: { errors },
   } = useForm<LoginInput>({
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginInput) => {
-    try {
-      setLoading(true);
-      const res = await AuthApi.login(data);
-      // lưu vào zutand
-
-      if(!res.user) {
-        throw new Error("Không nhận được dữ liệu user từ server")
-      }
-
-      setAuth(res.user, res.access_token);
-      toast.success("Đăng nhập thành công");
-
-      // điều hướng theo quyền
-      if (res.user.role === "superAdmin" || res.user.role === "admin") {
-        router.push("/admin");
-      } else {
-        router.push("/");
-      }
-    } catch (err) {
-      const error = err as AxiosError<{ message?: string }>;
-      const message =
-        error.response?.data?.message || error.message || "Đăng nhập thất bại";
-      toast.error(message);
-    } finally {
-      setLoading(false);
-    }
-  };
   return(
     <Box 
       sx = {{

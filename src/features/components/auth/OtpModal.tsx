@@ -1,6 +1,4 @@
 "use client";
-
-import { AuthApi } from "@/api/authAPI";
 import {
   Box,
   Button,
@@ -9,9 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
-import toast from "react-hot-toast";
+import useAuth from "./hooks/useAuth";
 
 interface OtpModalProps {
   open: boolean;
@@ -20,12 +16,12 @@ interface OtpModalProps {
 }
 
 export default function OtpModal({ open, onClose, email }: OtpModalProps) {
-  const [otpValues, setOtpValues] = useState<string[]>(Array(6).fill(""));
-  const [loading, setLoading] = useState(false);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const route = useRouter()
+  const {loading,inputRefs, otpValues,setOtpValues,handleVerify} = useAuth()
+
+
+
   const handleChange = (index: number, value: string) => {
-    if (!/^\d?$/.test(value)) return; // chỉ cho nhập 1 chữ số
+    if (!/^\d?$/.test(value)) return; 
 
     const newOtp = [...otpValues];
     newOtp[index] = value;
@@ -43,31 +39,6 @@ export default function OtpModal({ open, onClose, email }: OtpModalProps) {
   ) => {
     if (e.key === "Backspace" && !otpValues[index] && index > 0) {
       inputRefs.current[index - 1]?.focus();
-    }
-  };
-
-  const handleVerify = async () => {
-    const otp = otpValues.join("");
-    if (otp.length !== 6) {
-      toast.error("Vui lòng nhập đầy đủ 6 số trong OTP");
-      return;
-    }
-
-    try {
-      setLoading(true);
-      await AuthApi.verifyOtp({ email, otp });
-      toast.success("Xác thực thành công");
-      onClose();
-      route.push("/auth/login")
-    } catch (err: unknown) {
-      const errorMessage =
-        err instanceof Error
-          ? err.message
-          : (err as { response?: { data?: { message?: string } } }).response
-              ?.data?.message || "OTP không hợp lệ";
-      toast.error(errorMessage);
-    } finally {
-      setLoading(false);
     }
   };
   return (
@@ -120,7 +91,7 @@ export default function OtpModal({ open, onClose, email }: OtpModalProps) {
           
           sx={{ mt: 1, fontWeight: 600 }}
           disabled={loading}
-          onClick={handleVerify}
+          onClick={()=> handleVerify}
         >
           {loading ? "Đang xác thực..." : "Xác nhận"}
         </Button>

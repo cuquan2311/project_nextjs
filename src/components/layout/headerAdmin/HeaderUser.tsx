@@ -30,7 +30,7 @@ import { SimpleThemeToggle } from "@/components/theme/ThemeToggle";
 import { useAuthStore } from "@/store/useAuthStore";
 
 export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
-  const {  user, logout } = useAuthStore();
+  const { user, logout } = useAuthStore();
   const [open, setOpen] = useState(false);
   const theme = useTheme();
 
@@ -46,7 +46,11 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
 
   const menuItems = [
     { text: "Home", icon: <HomeIcon />, href: "/" },
-    { text: "Quản lý dữ liệu", icon: <AdminPanelSettingsIcon />, href: "/admin" },
+    {
+      text: "Quản lý dữ liệu",
+      icon: <AdminPanelSettingsIcon />,
+      href: "/admin",
+    },
     { text: "Profile", icon: <PersonIcon />, href: "/profile" },
     { text: "Account Settings", icon: <SettingsIcon />, href: "/settings" },
   ];
@@ -92,15 +96,21 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
           >
             {user.avatar ? (
               <Avatar
-              src={user.avatar}
-              sx={{
-                width: 40,
-                height: 40,
-                border: "2px solid",
-                borderColor: theme.palette.divider,
-              }}
-            />
-            ): (
+                src={
+                  typeof user.avatar === "string"
+                    ? user.avatar
+                    : user.avatar
+                      ? URL.createObjectURL(user.avatar)
+                      : undefined
+                }
+                sx={{
+                  width: 40,
+                  height: 40,
+                  border: "2px solid",
+                  borderColor: theme.palette.divider,
+                }}
+              />
+            ) : (
               <Avatar src="/broken-image.jpg" />
             )}
           </Button>
@@ -120,15 +130,21 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
           >
             {user.avatar ? (
               <Avatar
-              src={user.avatar}
-              sx={{
-                width: 40,
-                height: 40,
-                border: "2px solid",
-                borderColor: theme.palette.divider,
-              }}
-            />
-            ): (
+                src={
+                  typeof user.avatar === "string"
+                    ? user.avatar
+                    : user.avatar
+                      ? URL.createObjectURL(user.avatar)
+                      : undefined
+                }
+                sx={{
+                  width: 40,
+                  height: 40,
+                  border: "2px solid",
+                  borderColor: theme.palette.divider,
+                }}
+              />
+            ) : (
               <Avatar src="/broken-image.jpg" />
             )}
           </Button>
@@ -157,28 +173,34 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
         <Box textAlign="center" mb={2}>
           {user.avatar ? (
             <Avatar
-            src={user.avatar}
-            sx={{
-              width: 100,
-              height: 100,
-              mx: "auto",
-              mb: 2,
-              transition: "transform 0.3s",
-              "&:hover": { transform: "scale(1.05)" },
-            }}
-          />
-          ) : (
-            <Avatar 
-             src="/broken-image.jpg"
+              src={
+                typeof user.avatar === "string"
+                  ? user.avatar
+                  : user.avatar
+                    ? URL.createObjectURL(user.avatar)
+                    : undefined
+              }
               sx={{
-              width: 100,
-              height: 100,
-              mx: "auto",
-              mb: 2,
-              transition: "transform 0.3s",
-              "&:hover": { transform: "scale(1.05)" },
-            }}
-             />
+                width: 100,
+                height: 100,
+                mx: "auto",
+                mb: 2,
+                transition: "transform 0.3s",
+                "&:hover": { transform: "scale(1.05)" },
+              }}
+            />
+          ) : (
+            <Avatar
+              src="/broken-image.jpg"
+              sx={{
+                width: 100,
+                height: 100,
+                mx: "auto",
+                mb: 2,
+                transition: "transform 0.3s",
+                "&:hover": { transform: "scale(1.05)" },
+              }}
+            />
           )}
           <Typography variant="h6" fontWeight={600}>
             {user.username}
@@ -209,7 +231,7 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
               }}
             >
               <Typography variant="caption" fontWeight={600}>
-                {(user.role).toUpperCase()}
+                {user.role.toUpperCase()}
               </Typography>
             </Paper>
           </Box>
@@ -271,7 +293,7 @@ export default function HeaderUser({ openSidebar }: { openSidebar: boolean }) {
                   borderRadius: 2,
                   mb: 1,
                   transition: "all 0.3s",
-                  "&:hover": { 
+                  "&:hover": {
                     bgcolor: theme.palette.primary.light,
                     transform: "translateX(5px)",
                   },
