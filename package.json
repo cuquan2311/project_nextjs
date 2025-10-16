@@ -25,6 +25,7 @@
     "chart.js": "^4.5.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.12",
+    "jose": "^6.1.0",
     "lottie-react": "^2.4.1",
     "next": "15.5.2",
     "next-intl": "^4.3.6",

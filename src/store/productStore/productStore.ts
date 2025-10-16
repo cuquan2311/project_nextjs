@@ -1,7 +1,5 @@
-import { ProductApi } from "@/api/productsAPI";
 import { Product, ProductInput, UpdateProduct } from "@/types/productType";
 import { create } from "zustand";
-import { useNotificationStore } from "../NotificationStore";
 import api from "@/api/gobalAPI";
 import axios, { AxiosError } from "axios";
 interface ProductState {

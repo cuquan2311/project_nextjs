@@ -3,9 +3,8 @@ import { useAuthStore } from '@/store/useAuthStore';
 import { LoginInput } from '@/types/authType';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import toast from 'react-hot-toast';
-
 export default function useAuth() {
   const route = useRouter()
   const {setAuth} = useAuthStore()
@@ -27,7 +26,7 @@ export default function useAuth() {
 
       setAuth(res.user, res.access_token);
       toast.success("Đăng nhập thành công")
-
+      
       // điểu hướng theo quyền
       if(res.user.role === "superAdmin" || res.user.role === "admin") {
         route.push("/admin")

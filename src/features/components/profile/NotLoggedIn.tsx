@@ -37,7 +37,7 @@ export default function NotLoggedIn() {
             sx={{
               marginTop: "10px"
             }}
-            onClick={() => router.push("/login")}
+            onClick={() => router.push("/")}
           >
             Về trang chủ
           </Button>
@@ -47,7 +47,7 @@ export default function NotLoggedIn() {
             sx={{
               marginTop: "10px"
             }}
-            onClick={() => router.push("/login")}
+            onClick={() => router.push("/auth/login")}
           >
             Đăng nhập ngay
           </Button>

@@ -24,6 +24,7 @@ export const AuthApi = {
   login: async (data: LoginInput): Promise<AuthResponse> => {
     const res = await api.post<AuthResponse>("/auth/login", data);
     console.log("🚀 ~ Đăng nhập --->:", res.data);
+    console.log("📤 Gửi login data:", data);
     return res.data;
   },
 

@@ -91,7 +91,7 @@ export default function OtpModal({ open, onClose, email }: OtpModalProps) {
           
           sx={{ mt: 1, fontWeight: 600 }}
           disabled={loading}
-          onClick={()=> handleVerify}
+          onClick={()=> handleVerify(email, onClose)}
         >
           {loading ? "Đang xác thực..." : "Xác nhận"}
         </Button>
