@@ -172,5 +172,13 @@
     "reply": "Trả lời thảo luận này",
     "replied": "Trả lời",
     "replying_to": "Đang trả lời"
+  },
+  "mobileMenu": {
+    "home": "Trang chủ",
+    "features": "Tính năng",
+    "admin": "Quản trị",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "menu": "Menu"
   }
 }

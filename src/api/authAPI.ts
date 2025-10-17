@@ -22,7 +22,9 @@ export const AuthApi = {
 
   //! Đăng nhập
   login: async (data: LoginInput): Promise<AuthResponse> => {
-    const res = await api.post<AuthResponse>("/auth/login", data);
+    const res = await api.post<AuthResponse>("/auth/login", data, {
+      withCredentials: true,
+    });
     console.log("🚀 ~ Đăng nhập --->:", res.data);
     console.log("📤 Gửi login data:", data);
     return res.data;
@@ -38,6 +40,7 @@ export const AuthApi = {
       return (
         await api.put(`/auth/update/${_id}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
+          withCredentials: true,
         })
       ).data;
     }
