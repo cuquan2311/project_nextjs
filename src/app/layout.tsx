@@ -12,7 +12,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string }
 }) {
-  const locale = params.locale || "en";
+  const locale = params.locale ?? "en";
   const messages = await getMessages({ locale });
   return (
     <html lang={locale} suppressHydrationWarning>

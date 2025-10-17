@@ -172,5 +172,13 @@
     "reply": "Reply to this discussion",
     "replied": "Reply",
     "replying_to": "Replying to"
+  },
+  "mobileMenu": {
+    "home": "Home",
+    "features": "Features",
+    "admin": "Admin",
+    "login": "Login",
+    "logout": "Logout",
+    "menu": "Menu"
   }
 }
